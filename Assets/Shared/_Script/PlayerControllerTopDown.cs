@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerControllerTopDown : MonoBehaviour
 {
     public float speed;
+    GameManager gm;
 
     private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        gm = GameManager.GetInstance();
     }
 
     // Update is called once per frame
@@ -45,5 +47,9 @@ public class PlayerControllerTopDown : MonoBehaviour
         animator.SetBool("IsMoving", dir.magnitude > 0);
 
         GetComponent<Rigidbody2D>().velocity = speed * dir;
+
+        if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME) {
+            gm.ChangeState(GameManager.GameState.PAUSE);
+        }
     }
 }
