@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager
 {
@@ -12,6 +13,7 @@ public class GameManager
     public bool reset;
 
     private static GameManager _instance;
+    private string[] scenePaths = {"Scene1/Scene1","Scene2/Scene2","Scene3/Scene3"};
 
 
     public static GameManager GetInstance()
@@ -68,10 +70,19 @@ public class GameManager
         changeStateDelegate();
     }
 
+
+    private void NextScene()
+    {
+        SceneManager.LoadScene(scenePaths[level], LoadSceneMode.Single);
+        level+=1;
+    }
+
+
     private void Reset()
     {
+        SceneManager.LoadScene(scenePaths[0], LoadSceneMode.Single);
         hp = 10;
-        level = 0;
+        level = 1;
     }
 
 }
