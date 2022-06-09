@@ -29,7 +29,7 @@ public class GameManager
     private GameManager()
     {
         hp = 10;
-        level = 1;
+        level = 3;
         reset = false;
         gameState = GameState.MENU;
         Time.timeScale = 0;
@@ -70,6 +70,13 @@ public class GameManager
         changeStateDelegate();
     }
 
+    public void ResetScene()
+    {
+        Debug.Log("ououo");
+        SceneManager.LoadScene(scenePaths[level-1], LoadSceneMode.Single);
+        ChangeState(GameState.GAME);
+        hp = 10;
+    }
 
     private void NextScene()
     {

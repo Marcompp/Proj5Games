@@ -15,6 +15,10 @@ public class UI_Pause : MonoBehaviour
     {
         gm.ChangeState(GameManager.GameState.GAME);
     }
+    public void RestartLevel()
+    {
+        gm.ResetScene();
+    }
     public void MainMenu()
     {
         gm.ChangeState(GameManager.GameState.MENU);

@@ -33,4 +33,8 @@ public class ActiveOnSomeStates : MonoBehaviour
     {
         
     }
+
+    void OnDestroy() {
+        GameManager.changeStateDelegate -= UpdateVisibility;
+    }
 }
