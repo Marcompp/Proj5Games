@@ -22,6 +22,7 @@ public class PlayerControllerTopDown : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
     public GameObject crosshair;
+    SpriteRenderer renderer;
 
     
     // Start is called before the first frame update
@@ -56,8 +57,8 @@ public class PlayerControllerTopDown : MonoBehaviour
             gm.ChangeState(GameManager.GameState.PAUSE);
         }
     }
-    void OnTriggerEnter2D(Object other) {
-        if(other.name=="Main Character"){
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Player")){
             renderer= GetComponent<SpriteRenderer>();
             renderer.color = new Color(1,0,0);
             Invoke("LoseLife",0.5f);
