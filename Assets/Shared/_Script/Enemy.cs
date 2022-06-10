@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private Vector2 direcao;
     private float dirx;
     private float diry;
+    SpriteRenderer renderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,14 +79,20 @@ public class Enemy : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Object other) {
-        Debug.Log("Entrou");
-        if(other.name=="Player"&&rb.gravityScale>0){
+        if(other.name=="Main Character"){
+            renderer= GetComponent<SpriteRenderer>();
+            renderer.color = new Color(1,0,0);
             Invoke("LoseLife",0.5f);
         }
     }
 
     void LoseLife(){
+        
         gm.hp --;
+        if(gm.hp<=0){
+            gm.ChangeState(GameManager.GameState.ENDGAME);
+        }
+        renderer.color = new Color(1,1,1);
     }
 
     private void Movement()
@@ -95,10 +102,6 @@ public class Enemy : MonoBehaviour
             Flip();
         } else if (isFacingRight == true && dirx<0 ){
             Flip();
-        } else if(isFacingRight == true && dirx>0 ){
-            Flip();
-        } else if(isFacingRight==false && dirx<0 ){
-            Flip();
         }
     }
 
@@ -106,7 +109,6 @@ public class Enemy : MonoBehaviour
         isFacingRight = !isFacingRight;
         Vector2 Scaler = transform.localScale;
         Scaler.x *= -1;
-        Scaler.y *= -1;
         transform.localScale = Scaler;
     }
 

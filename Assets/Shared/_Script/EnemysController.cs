@@ -23,10 +23,7 @@ public class EnemysController : MonoBehaviour
     void NewEnemy(GameObject enemy,GameObject enemyPOS, bool right) {
         GameObject i = Instantiate(enemy, enemyPOS.transform.position, Quaternion.identity);
         _listEnemys.Add(i);
-        if (right)
-        {
-            i.GetComponent<Enemy>().isFacingRight = right;	
-        }
+        i.GetComponent<Enemy>().isFacingRight = false;
     }
 
 }

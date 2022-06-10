@@ -56,6 +56,22 @@ public class PlayerControllerTopDown : MonoBehaviour
             gm.ChangeState(GameManager.GameState.PAUSE);
         }
     }
+    void OnTriggerEnter2D(Object other) {
+        if(other.name=="Main Character"){
+            renderer= GetComponent<SpriteRenderer>();
+            renderer.color = new Color(1,0,0);
+            Invoke("LoseLife",0.5f);
+        }
+    }
+
+    void LoseLife(){
+        
+        gm.hp --;
+        if(gm.hp<=0){
+            gm.ChangeState(GameManager.GameState.ENDGAME);
+        }
+        renderer.color = new Color(1,1,1);
+    }
 
     void Moving()
     {

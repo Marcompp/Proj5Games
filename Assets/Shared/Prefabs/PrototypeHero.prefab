@@ -284,6 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be987bdecd0e48e439948c289f567a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 12
+  _speed: 15
   pl: {fileID: 0}
   isFacingRight: 0
