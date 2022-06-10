@@ -19,5 +19,6 @@ public class UI_MainMenu : MonoBehaviour
     public void StartGame()
     {
         gm.ChangeState(GameManager.GameState.GAME);
+        FindObjectOfType<AudioManager>().Play("Ambiente");
     }
 }

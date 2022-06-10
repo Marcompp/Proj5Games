@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
 
 	public MySound[] sounds;
 
+
 	void Awake()
 	{
 		if (instance != null)
@@ -30,25 +31,33 @@ public class AudioManager : MonoBehaviour
 			s.source.clip = s.clip;
 			s.source.loop = s.loop;
 
-			s.source.outputAudioMixerGroup = mixerGroup;
+			//s.source.outputAudioMixerGroup = mixerGroup;
 		}
 	}
+
+    public void Update(){
+        foreach(MySound s in sounds){
+            Debug.Log($"{s.name} : {s.source.isPlaying}");
+        }
+    }
 
 	public void Play(string sound)
 	{
 		MySound s = Array.Find(sounds, item => item.name == sound);
+        Debug.Log(JsonUtility.ToJson(s));
 		if (s == null)
 		{
 			Debug.LogWarning("Sound: " + name + " not found!");
 			return;
 		}
 
-		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
-		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+		s.source.volume = 1.0f;//s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+		s.source.pitch = 1.0f; //s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
 		s.source.Play();
 	}
 	public void Stop(string sound){
+        Debug.Log($"Stopping {sound}");
 		MySound s = Array.Find(sounds, item => item.name == sound);
 		if (s == null)
 		{
