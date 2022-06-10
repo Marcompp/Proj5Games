@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.U2D;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager
 {
@@ -14,6 +16,10 @@ public class GameManager
 
     private static GameManager _instance;
     private string[] scenePaths = {"Scene1/Scene1","Scene2/Scene2","Scene3/Scene3"};
+    
+    [SerializeField]private GameObject _enemy;
+    [SerializeField]private List<GameObject> _EnemyPos = new List<GameObject>();
+    private List<GameObject> _listEnemys = new List<GameObject>();
 
 
     public static GameManager GetInstance()
@@ -78,7 +84,7 @@ public class GameManager
         hp = 10;
     }
 
-    private void NextScene()
+    public void NextScene()
     {
         SceneManager.LoadScene(scenePaths[level], LoadSceneMode.Single);
         level+=1;

@@ -45,3 +45,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Portals
+    uniqueID: 1493824281
+    locked: 0
+  - name: Crosshair
+    uniqueID: 533778827
+    locked: 0
+  - name: Enemys
+    uniqueID: 3045473521
+    locked: 0
+  - name: Player
+    uniqueID: 2934010291
+    locked: 0
+  - name: Columns
+    uniqueID: 2311639437
+    locked: 0
