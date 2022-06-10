@@ -14,6 +14,7 @@ public class GoalController : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             gm.ChangeState(GameManager.GameState.ENDGAME);
+
         }
     }
 }
