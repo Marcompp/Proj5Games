@@ -44,34 +44,31 @@ public class Enemy : MonoBehaviour
             dirx =  pl.transform.position.x - transform.position.x; //pega o valor do x do player e do inimigo
             diry = pl.transform.position.y - transform.position.y; //y é o eixo vertical
             if ((dirx <=3f && dirx >1.5f)||(dirx >=-3f && dirx <-1.5f)){
-                anim.SetBool("attacking",false);
-                anim.SetBool("running",true);
+                
+                anim.SetInteger("AnimState", 1);
                 Movement();
             }
             else if(dirx<=1.5f && dirx >=-1.5f){
-                anim.SetBool("running",false);
+                anim.SetInteger("AnimState", 0);
                 if(rb.gravityScale>0){
-                    anim.SetBool("attacking",true);
+                    anim.SetTrigger("Attack1");
                 }
             }
             else{
-                anim.SetBool("attacking",false);
-                anim.SetBool("running",false);
+                anim.SetInteger("AnimState", 0);
             }
 
             if ((diry <=3f && diry >1.5f)||(diry >=-3f && diry <-1.5f)){
-                anim.SetBool("attacking",false);
-                anim.SetBool("running",true);
+                anim.SetInteger("AnimState", 1);
             }
             else if(diry<=1.5f && diry >=-1.5f){
-                anim.SetBool("running",false);
+                anim.SetInteger("AnimState", 0);
                 if(rb.gravityScale>0){
-                    anim.SetBool("attacking",true);
+                    anim.SetTrigger("Attack1");
                 }
             }
             else{
-                anim.SetBool("attacking",false);
-                anim.SetBool("running",false);
+                anim.SetInteger("AnimState", 0);
             }
         }
         // if(Input.GetAxis("Horizontal")==0.0f){
@@ -81,6 +78,7 @@ public class Enemy : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Object other) {
+        Debug.Log("Entrou");
         if(other.name=="Player"&&rb.gravityScale>0){
             Invoke("LoseLife",0.5f);
         }
@@ -93,13 +91,13 @@ public class Enemy : MonoBehaviour
     private void Movement()
     {
         rb.MovePosition(rb.position + new Vector2(dirx, diry).normalized   * _speed * Time.deltaTime);
-        if(isFacingRight==false && dirx>0 && rb.gravityScale>0){
+        if(isFacingRight==false && dirx>0 ){
             Flip();
-        } else if (isFacingRight == true && dirx<0 && rb.gravityScale>0){
+        } else if (isFacingRight == true && dirx<0 ){
             Flip();
-        } else if(isFacingRight == true && dirx>0 && rb.gravityScale<0){
+        } else if(isFacingRight == true && dirx>0 ){
             Flip();
-        } else if(isFacingRight==false && dirx<0 && rb.gravityScale<0){
+        } else if(isFacingRight==false && dirx<0 ){
             Flip();
         }
     }

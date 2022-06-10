@@ -6,6 +6,11 @@ public class UI_MainMenu : MonoBehaviour
 {
     GameManager gm;
 
+    void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("Ambiente");
+    }
+
     private void OnEnable()
     {
         gm = GameManager.GetInstance();

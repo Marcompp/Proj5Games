@@ -17,7 +17,7 @@ public class EnemysController : MonoBehaviour
             NewEnemy(_enemy, _EnemyPosRight[i],true);
         }
         for(int i = 0; i < _EnemyPosLeft.Count; i++){
-            NewEnemy(_enemy, _EnemyPosLeft[i],true);
+            NewEnemy(_enemy, _EnemyPosLeft[i],false);
         }
     }
     void NewEnemy(GameObject enemy,GameObject enemyPOS, bool right) {
@@ -25,7 +25,7 @@ public class EnemysController : MonoBehaviour
         _listEnemys.Add(i);
         if (right)
         {
-            i.GetComponent<Enemy>().isFacingRight = true;	
+            i.GetComponent<Enemy>().isFacingRight = right;	
         }
     }
 
