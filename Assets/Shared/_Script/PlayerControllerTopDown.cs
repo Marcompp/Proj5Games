@@ -60,7 +60,7 @@ public class PlayerControllerTopDown : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")){
             renderer= GetComponent<SpriteRenderer>();
-            renderer.color = new Color(1,0,0);
+            GetComponent<Renderer>().color = new Color(1,0,0);
             Invoke("LoseLife",0.5f);
         }
     }
@@ -71,7 +71,7 @@ public class PlayerControllerTopDown : MonoBehaviour
         if(gm.hp<=0){
             gm.ChangeState(GameManager.GameState.ENDGAME);
         }
-        renderer.color = new Color(1,1,1);
+        GetComponent<Renderer>().color = new Color(1,1,1);
     }
 
     void Moving()
