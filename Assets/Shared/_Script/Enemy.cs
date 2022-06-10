@@ -41,13 +41,14 @@ public class Enemy : MonoBehaviour
         {
             rb.velocity = direcao;
             rb.isKinematic = false;
-            dirx =  pl.transform.position.x - transform.position.x;
-            if ((dirx <=5f && dirx >2f)||(dirx >=-5f && dirx <-2f)){
+            dirx =  pl.transform.position.x - transform.position.x; //pega o valor do x do player e do inimigo
+            diry = pl.transform.position.y - transform.position.y; //y é o eixo vertical
+            if ((dirx <=3f && dirx >1.5f)||(dirx >=-3f && dirx <-1.5f)){
                 anim.SetBool("attacking",false);
                 anim.SetBool("running",true);
                 Movement();
             }
-            else if(dirx<=2f && dirx >=-2f){
+            else if(dirx<=1.5f && dirx >=-1.5f){
                 anim.SetBool("running",false);
                 if(rb.gravityScale>0){
                     anim.SetBool("attacking",true);
@@ -58,13 +59,11 @@ public class Enemy : MonoBehaviour
                 anim.SetBool("running",false);
             }
 
-            diry = pl.transform.position.y - transform.position.y;
-            if ((diry <=5f && diry >2f)||(diry >=-5f && diry <-2f)){
+            if ((diry <=3f && diry >1.5f)||(diry >=-3f && diry <-1.5f)){
                 anim.SetBool("attacking",false);
                 anim.SetBool("running",true);
-                Movement();
             }
-            else if(diry<=2f && diry >=-2f){
+            else if(diry<=1.5f && diry >=-1.5f){
                 anim.SetBool("running",false);
                 if(rb.gravityScale>0){
                     anim.SetBool("attacking",true);
@@ -75,9 +74,9 @@ public class Enemy : MonoBehaviour
                 anim.SetBool("running",false);
             }
         }
-        if(Input.GetAxis("Horizontal")==0.0f){
-            rb.velocity -= rb.velocity;
-        }
+        // if(Input.GetAxis("Horizontal")==0.0f){
+        //     rb.velocity -= rb.velocity;
+        // }
         
     }
 
@@ -93,7 +92,7 @@ public class Enemy : MonoBehaviour
 
     private void Movement()
     {
-        transform.Translate(Vector2.right*dirx * _speed * Time.deltaTime, Space.World);
+        rb.MovePosition(rb.position + new Vector2(dirx, diry).normalized   * _speed * Time.deltaTime);
         if(isFacingRight==false && dirx>0 && rb.gravityScale>0){
             Flip();
         } else if (isFacingRight == true && dirx<0 && rb.gravityScale>0){

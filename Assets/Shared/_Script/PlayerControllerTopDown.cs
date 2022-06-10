@@ -35,7 +35,7 @@ public class PlayerControllerTopDown : MonoBehaviour
     void Update()
     {
         Moving();
-        Aiming();
+        // Aiming();
         InputFunct();        
     }
 

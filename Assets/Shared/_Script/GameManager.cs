@@ -13,6 +13,8 @@ public class GameManager
     public int level;
     public int hp;
     public bool reset;
+    public int firstlevel = 1;
+    public int basehp = 7;
 
     private static GameManager _instance;
     private string[] scenePaths = {"Scene1/Scene1","Scene2/Scene2","Scene3/Scene3"};
@@ -34,8 +36,8 @@ public class GameManager
 
     private GameManager()
     {
-        hp = 10;
-        level = 3;
+        hp = basehp;
+        level = firstlevel;
         reset = false;
         gameState = GameState.MENU;
         Time.timeScale = 0;
@@ -81,7 +83,7 @@ public class GameManager
         Debug.Log("ououo");
         SceneManager.LoadScene(scenePaths[level-1], LoadSceneMode.Single);
         ChangeState(GameState.GAME);
-        hp = 10;
+        hp = basehp;
     }
 
     public void NextScene()
@@ -94,8 +96,8 @@ public class GameManager
     private void Reset()
     {
         SceneManager.LoadScene(scenePaths[0], LoadSceneMode.Single);
-        hp = 10;
-        level = 1;
+        hp = basehp;
+        level = firstlevel;
     }
 
 }
